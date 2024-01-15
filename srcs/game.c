@@ -12,12 +12,9 @@
 
 #include "../includes/so_long.h"
 
-int close_window(int keysym, t_data *data);
-void load_map(t_data *data);
-int on_destroy(t_data *data);
-
 int handle_no_event(void *data)
 {
+	data = data;
     return (0);
 }
 
@@ -81,6 +78,7 @@ int on_destroy(t_data *data)
 
 int close_window(int keysym, t_data *data)
 {
+	keysym = keysym;
     mlx_destroy_window(data->mlx_ptr, data->win_ptr);
     mlx_destroy_display(data->mlx_ptr);
     free(data->mlx_ptr);
@@ -155,6 +153,7 @@ int main(void)
     load_map(&data);
 
     data.win_ptr = mlx_new_window(data.mlx_ptr, data.width * TILE_SIZE, data.height * TILE_SIZE, "Window");
+	// data.win_ptr = mlx_new_window(data.mlx_ptr, 100, 100, "Window");
     if (!data.win_ptr)  
     {
         free(data.mlx_ptr);
@@ -188,9 +187,12 @@ void load_map(t_data *data)
     char *line;
     int j;
 
-    fd = open(MINIMAL_1, O_RDONLY);
+    fd = open("beurs.ber", O_RDONLY);
     if (fd == -1)
+    {
+        ft_printf("Failed opening map.\n");
         exit(1);
+    }
     i = 0;
 
     line = get_next_line(fd);
@@ -200,7 +202,7 @@ void load_map(t_data *data)
         line = get_next_line(fd);
         i++;
     }
-    // printf("%s\n", data->map[i - 1]);
+    printf("%s\n", data->map[i - 1]);
     data->height = i;
     j = 0;
     while (data->map[i - 1][j])

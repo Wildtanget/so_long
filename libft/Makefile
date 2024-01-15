@@ -6,7 +6,7 @@
 #    By: notahtah <notahtah@student.codam.nl>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/18 13:20:51 by notahtah          #+#    #+#              #
-#    Updated: 2024/01/15 01:37:50 by notahtah         ###   ########.fr        #
+#    Updated: 2024/01/15 04:23:48 by notahtah         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,15 +50,6 @@ SRCS		=		ft_atoi.c				\
 					ft_substr.c				\
 					ft_tolower.c			\
 					ft_toupper.c			\
-					ft_lstadd_back.c		\
-					ft_lstadd_front.c		\
-					ft_lstclear.c			\
-					ft_lstdelone.c			\
-					ft_lstiter.c			\
-					ft_lstlast.c			\
-					ft_lstnew.c				\
-					ft_lstmap.c				\
-					ft_lstsize.c			\
 					ft_print_chars.c		\
 					ft_print_hex.c			\
 					ft_print_integer.c		\
@@ -67,25 +58,16 @@ SRCS		=		ft_atoi.c				\
 
 OBJS		=		$(SRCS:%.c=%.o)
 
-NONE='\033[0m'
-GREEN='\033[32m'
-GRAY='\033[2;37m'
-CURSIVE='\033[3m'
-
 $(NAME):	
-			@echo $(CURSIVE) $(GRAY) "Compiling libft..." $(NONE)
 			@$(CC) $(CFLAGS) -c $(SRCS)
-			@echo $(CURSIVE) $(GRAY) "Generating $(NAME)..." $(NONE)
 			@ar -rc $(NAME) $(OBJS)
 
 all:		$(NAME)
 
 clean:
-			@echo $(CURSIVE) $(GRAY) "Removing libft object files..." $(NONE)
 			@rm -f $(OBJS)
 
 fclean: 	clean
-			@echo $(CURSIVE) $(GRAY) "Removing $(NAME)..." $(NONE)
 			@rm -f $(NAME)
 
 re:			fclean all

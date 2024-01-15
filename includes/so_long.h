@@ -13,35 +13,36 @@
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-#include <mlx.h>
-#include <X11/keysym.h>
-#include <X11/X.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <fcntl.h>
-#include "../get_next_line/get_next_line.h"
+# include <mlx.h>
+# include <X11/keysym.h>
+# include <X11/X.h>
+# include <stdlib.h>
+# include <stdio.h>
+# include <fcntl.h>
+# include "../libft/libft.h"
+# include "../get_next_line/get_next_line.h"
 
-#define MLX_ERROR 1
+# define MLX_ERROR 1
 
 /* Tile size*/
-#define TILE_SIZE 64
+# define TILE_SIZE 64
 
 /* Colors */
-#define RED     0xFF0000
-#define GREEN   0x00FF00
-#define BLUE    0x0000FF
+# define RED     0xFF0000
+# define GREEN   0x00FF00
+# define BLUE    0x0000FF
 
 /* Paths */
-#define PLAYER "./assets/player.xmp"
-#define COIN "./assets/coin.xmp"
-#define EXIT "./assets/exit.xmp"
-#define FLOOR "./assets/floor.xmp"
-#define WALL "./assets/wall.xmp"
+# define PLAYER "../assets/player.xmp"
+# define COIN "../assets/coin.xmp"
+# define EXIT "../assets/exit.xmp"
+# define FLOOR "../assets/floor.xmp"
+# define WALL "../assets/wall.xmp"
 
 /* Maps */
-#define MINIMAL_1 "./minimal_horizontal.ber"
-#define BIG_1 "./big.ber"
-#define BEURS "./beurs.ber"
+// # define MINIMAL_1 "./maps/minimal_horizontal.ber"
+// # define BIG_1 "./maps/big.ber"
+// # define BEURS "./maps/beurs.ber"
 
 typedef struct s_tiles {
     void *coin; 
