@@ -11,6 +11,36 @@
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
+#include "../get_next_line/get_next_line.h"
+
+int main(void)
+{
+    t_data data;
+    /* Initialize window */
+    data.mlx_ptr = mlx_init();
+    if (!data.mlx_ptr)
+        return (MLX_ERROR);
+
+    init_sprites(&data);
+    load_map(&data);
+    data.win_ptr = mlx_new_window(data.mlx_ptr, data.width * TILE_SIZE, data.height * TILE_SIZE, "Window");
+    if (!data.win_ptr)  
+    {
+        free(data.mlx_ptr);
+        return (MLX_ERROR);
+    }
+    /* Create image*/
+
+    /* Setup hooks */
+    mlx_hook(data.win_ptr, KeyRelease, KeyReleaseMask, &handle_input, &data);
+    mlx_hook(data.win_ptr, DestroyNotify, StructureNotifyMask, &on_destroy, &data);
+    mlx_loop_hook(data.mlx_ptr, &render, &data);
+
+    /* Loop window */
+    mlx_loop(data.mlx_ptr);
+
+    return (0);
+}
 
 int handle_no_event(void *data)
 {
@@ -91,12 +121,9 @@ int render(t_data *data)
     int i;
     int j;
 
-    if (!data->win_ptr)
-        return (1);
     data->coins = 0;
     i = 0;
     j = 0;
-    mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->tiles.wall, i * 64, j * 64);
     while (i < data->height)
     {
         j = 0;
@@ -139,46 +166,6 @@ void init_sprites(t_data *data)
     load_sprites(data, &data->tiles.floor, FLOOR);
 }
 
-
-int main(void)
-{
-    t_data data;
-    
-    /* Initialize window */
-    data.mlx_ptr = mlx_init();
-    if (!data.mlx_ptr)
-        return (MLX_ERROR);
-
-    init_sprites(&data);
-    load_map(&data);
-
-    data.win_ptr = mlx_new_window(data.mlx_ptr, data.width * TILE_SIZE, data.height * TILE_SIZE, "Window");
-	// data.win_ptr = mlx_new_window(data.mlx_ptr, 100, 100, "Window");
-    if (!data.win_ptr)  
-    {
-        free(data.mlx_ptr);
-        return (MLX_ERROR);
-    }
-
-    /* Create image*/
-
-    /* Setup hooks */
-    mlx_hook(data.win_ptr, KeyRelease, KeyReleaseMask, &handle_input, &data);
-    mlx_hook(data.win_ptr, DestroyNotify, StructureNotifyMask, &on_destroy, &data);
-    mlx_loop_hook(data.mlx_ptr, &render, &data);
-
-    /* Loop window */
-    mlx_loop(data.mlx_ptr);
-
-    /* Destroy display */
-    // mlx_destroy_display(data.mlx_ptr);
-    // free(data.mlx_ptr);
-    return (0);
-}
-
-
-
-
 /*  Read and load map   */
 void load_map(t_data *data)
 {
@@ -187,22 +174,17 @@ void load_map(t_data *data)
     char *line;
     int j;
 
-    fd = open("beurs.ber", O_RDONLY);
+    fd = open(BIG_1, O_RDONLY);
     if (fd == -1)
-    {
-        ft_printf("Failed opening map.\n");
         exit(1);
-    }
     i = 0;
-
     line = get_next_line(fd);
-    while (line[0] != '\0')
+    while (line)
     {
         data->map[i] = line;
         line = get_next_line(fd);
         i++;
     }
-    printf("%s\n", data->map[i - 1]);
     data->height = i;
     j = 0;
     while (data->map[i - 1][j])

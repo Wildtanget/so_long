@@ -11,20 +11,22 @@ INCLUDE 	= 	-lmlx -lXext -lX11
 # GRAY='\033[2;37m'
 # CURSIVE='\033[3m'
 
-SRCS_GAME	= 	./srcs/game.c
-
-SRCS_GNL	= 	./get_next_line/get_next_line.c \
+SRCS_GAME	= 	./srcs/game.c \
+				./get_next_line/get_next_line.c \
 		  		./get_next_line/get_next_line_utils.c \
 
 OBJ 		= 	*.o
 
-SRC 		= 	$(SRCS_GNL) $(SRCS_GAME)
+SRC 		=  $(SRCS_GAME)
 
 all: $(NAME)
 
+test:
+	@cc -Wall -Wextra -Werror srcs/game.c get_next_line/get_next_line.c get_next_line/get_next_line_utils.c libft/libft.a -lmlx -lXext -lX11
+
 $(NAME): $(OBJ)
 	@make -C $(LIBFT_DIR)
-	@$(CC) $(FLAGS) $(OBJ) $(LIBFT_DIR)/$(LIBFT) $(INCLUDE) -o $(NAME)
+	@$(CC) $(FLAGS) $(SRC) $(LIBFT_DIR)/$(LIBFT) $(INCLUDE) -o $(NAME)
 
 $(OBJ): $(SRC)
 	@$(CC) $(FLAGS) -c $(SRC) 

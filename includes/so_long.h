@@ -33,16 +33,16 @@
 # define BLUE    0x0000FF
 
 /* Paths */
-# define PLAYER "../assets/player.xmp"
-# define COIN "../assets/coin.xmp"
-# define EXIT "../assets/exit.xmp"
-# define FLOOR "../assets/floor.xmp"
-# define WALL "../assets/wall.xmp"
+# define PLAYER "./assets/player.xmp"
+# define COIN "./assets/coin.xmp"
+# define EXIT "./assets/exit.xmp"
+# define FLOOR "./assets/floor.xmp"
+# define WALL "./assets/wall.xmp"
 
 /* Maps */
-// # define MINIMAL_1 "./maps/minimal_horizontal.ber"
-// # define BIG_1 "./maps/big.ber"
-// # define BEURS "./maps/beurs.ber"
+# define MINIMAL_1 "./maps/minimal_horizontal.ber"
+# define BIG_1 "./maps/big.ber"
+# define BEURS "./maps/beurs.ber"
 
 typedef struct s_tiles {
     void *coin; 
