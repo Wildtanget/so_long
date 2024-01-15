@@ -12,23 +12,6 @@
 
 #include "get_next_line.h"
 
-// int	main(void)
-// {
-// 	int	fd = open("file.txt", O_RDWR);
-// 	int	i = 0;
-// 	char *line;
-
-// 	while (i < 1)
-// 	{
-// 		line = get_next_line(0);
-// 		printf("%s", line);
-// 		free(line);
-// 		i++;
-// 	}
-// 	close(fd);
-// 	return (0);
-// }
-
 char	*get_next_line(int fd)
 {
 	static t_list	*list;
@@ -49,7 +32,6 @@ char	*get_next_line(int fd)
 			return (line);
 		}
 		buffer = malloc(sizeof(char) * (BUFFER_SIZE + 1));
-		// printf("Malloc'd1 %p\n", buffer);
 		if (!buffer)
 			return (NULL);
 		res = read_buffer(fd, buffer);
@@ -102,8 +84,6 @@ void	clear_list(t_list **list)
 		{
 			previous = current;
 			current = current->next;
-			// printf("Free'd2 %p\n", previous->data);
-			// printf("Free'd3 %p\n", previous);
 			free(previous->data);
 			free(previous);
 			previous = NULL;
@@ -111,8 +91,6 @@ void	clear_list(t_list **list)
 	}
 	if (current)
 	{
-		// printf("Free'd2 %p\n", current->data);
-		// printf("Free'd3 %p\n", current);
 		free(current->data);
 		free(current);
 	}

@@ -6,7 +6,7 @@
 /*   By: notahtah <notahtah@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 00:58:57 by notahtah          #+#    #+#             */
-/*   Updated: 2024/01/15 00:58:58 by notahtah         ###   ########.fr       */
+/*   Updated: 2024/01/15 21:56:36 by notahtah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ char	*save_remainder(t_list *list)
 	while (current->data[i] != '\n' && current->data[i] != '\0')
 		i++;
 	remainder = malloc(sizeof(char) * (BUFFER_SIZE - ++i + 1));
-	// printf("Malloc'd2 %p\n", remainder);
 	if (!remainder)
 		return (NULL);
 	while (current->data && current->data[i])
@@ -58,7 +57,6 @@ char	*create_line(t_list *head)
 		return (NULL);
 	length = count_length(head);
 	line = malloc(sizeof(char) * length + 1);
-	// printf("Malloc'd3 %p\n", line);
 	if (!line)
 		return (NULL);
 	current = head;
@@ -97,7 +95,6 @@ void	*add_node(t_list **head, char *data)
 	if (!head || !data)
 		return (NULL);
 	new = malloc(sizeof(t_list));
-	// printf("Malloc'd4 %p\n", new);
 	if (!new)
 		return (NULL);
 	new->data = data;
