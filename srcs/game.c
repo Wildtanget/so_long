@@ -16,6 +16,7 @@
 int main(void)
 {
     t_data data;
+    
     /* Initialize window */
     data.mlx_ptr = mlx_init();
     if (!data.mlx_ptr)
